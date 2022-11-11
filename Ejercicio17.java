@@ -15,8 +15,8 @@ public class Ejercicio17 {
         int buscado= sc.nextInt();
         rellenaarray(array);
         burbuja(array);
-        buscar(array,buscado);
-
+        int end=busquedaBinaria(array,buscado);
+        System.out.println("El numero buscado esta en el "+end);
 
 
     }
@@ -38,30 +38,20 @@ public class Ejercicio17 {
             }
         }
     }
-    public  static void buscar (int [] array,int buscado){
+     public static int busquedaBinaria(int[] numeros, int valorbuscado) {
+                int izquierda = 0, derecha = numeros.length - 1, centro;
+                while (izquierda <= derecha) {
+                    centro = (derecha - izquierda) / 2 + izquierda;
+                    if (numeros[centro] == valorbuscado)
+                        return centro;
+                    if (valorbuscado < numeros[centro])
+                        derecha = centro - 1;
+                    else
+                        izquierda = centro + 1;
 
-        int mitad=(array.length/2);
-        int buscando=mitad;
-        int intentos=0;
-
-        for (int i =0; i<array.length;i++)
-            if (array[buscando]==buscado) {
-                intentos++;
-                System.out.println("El numero esta en el puesto "+buscando+" y se han hecho "+intentos+" intentos.");
-                i=array.length;
-            }
-            if (array[buscando]>buscado){
-                intentos++;
-                buscando= buscando-buscando/2;
+                }
+                return -1;
 
             }
+        }
 
-            if (array[buscando]<buscado){
-                intentos++;
-                buscando= buscando+buscando/2;
-            }
-
-
-
-    }
-}
